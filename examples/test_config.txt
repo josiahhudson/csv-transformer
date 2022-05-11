@@ -1,0 +1,15 @@
+# Example parse document.
+
+Parse:
+    0 AS id
+    1 AS /^(?<company>[^-]+)-(?<product_id>.+)$/
+    2 AS unit_cost
+    3 AS unit_qty
+    4 AS date
+Output:
+    int    ProductId: id
+    str Manufacturer: "front_" + company + "_Josiah" | REPLACE "_" " " | TITLE_CASE | UPPER_CASE
+    str Product Code: product_id
+    str     Cost/per: unit_cost + "/" + unit_qty
+    num   Round test: unit_cost | M_ROUND "1" | APPEND "25"
+   date       A date: date
