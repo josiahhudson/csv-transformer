@@ -21,15 +21,17 @@ For more information checkout the output of --help.
 (Here are a few diagrams to augment the help text)
 ## DSL Overview
 ![overview of how the DSL works](doc/Overview.png)
-- The scripts acts on records which are arrays of strings
+- Scripts act on records which are arrays of strings
 - The parse block extracts a set of string variables
-- The Output rules us the extracted variables and passes them through chains of transfroms
-- The tranform chains produce a key-value map which can be written out to different formats
+- The Output rules use the extracted variables and pass them through chains of transfroms
+- The tranform chains produce a key-value map
+- This key value map is then written out to stdout by the JSON or CSV writter.
 
 ## Structure of an Output Rule
 ![structure of an output rule](doc/Output%20rule.png)
 - Output rules start with the cast (yellow) which is the final type to appear in the output map.
-- The name (blue) is the key string in the output map
+  Depending on the output type, the cast may be reflected in the final output.
+- The name (blue) is the key string in the output map.  For CSV output, the name currently isn't used.
 - The first element in an output chain (red) must be a value (i.e. a variable or string literal)
 - The rest of the chain consists of transforms (green) seperated by "|" characters.  
   These transforms may take arguments which can be strings or variables.  Transforms are evaluated
@@ -121,3 +123,9 @@ If I find the time I would love to:
    Currently, there's no clean way to, for example, pass 2 variables
    concatenated together as an argument to a transform.
 5. Package the whole thing as a PHAR so it's easier to install and run.
+6. Add a new block called something like "Options" to add settings like:
+   - Skip first line
+   - Parse header column names
+   - Timezone for time stamps
+7. Add a property to Transforms and Casts that holds a description of what 
+   they do.  This could be added to the output of --list-transforms and --list-casts
