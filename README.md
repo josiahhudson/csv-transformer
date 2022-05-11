@@ -19,9 +19,21 @@ Output:
 For more information checkout the output of --help.
 
 (Here are a few diagrams to augment the help text)
+## DSL Overview
 ![overview of how the DSL works](doc/Overview.png)
+- The scripts acts on records which are arrays of strings
+- The parse block extracts a set of string variables
+- The Output rules us the extracted variables and passes them through chains of transfroms
+- The tranform chains produce a key-value map which can be written out to different formats
 
-![overview of how the DSL works](doc/Output%20rule.png)
+## Structure of an Output Rule
+![structure of an output rule](doc/Output%20rule.png)
+- Output rules start with the cast (yellow) which is the final type to appear in the output map.
+- The name (blue) is the key string in the output map
+- The first element in an output chain (red) must be a value (i.e. a variable or string literal)
+- The rest of the chain consists of transforms (green) seperated by "|" characters.  
+  These transforms may take arguments which can be strings or variables.  Transforms are evaluated
+  from left to right.
 
 ## Goals
 My goals in writing this project were:
@@ -71,7 +83,13 @@ My goals in writing this project were:
    reference columns by index.
 
 ## Running the thing
-All commands should be run from the root directory of the project.
+All commands should be run from the root directory of the project.  When you first download/clone the project, you will have to run composer install to pull in the dependancies (just the unit testing framework) and build the classmap/autoloader.
+
+### Run composer install
+```shell
+php composer.phar install
+```
+
 ### Run project
 ```shell
 php main.php examples/test_config.txt examples/test.csv
