@@ -23,9 +23,9 @@ For more information checkout the output of --help.
 ![overview of how the DSL works](doc/Overview.png)
 - Scripts act on records which are arrays of strings
 - The parse block extracts a set of string variables
-- The Output rules use the extracted variables and pass them through chains of transfroms
-- The tranform chains produce a key-value map
-- This key value map is then written out to stdout by the JSON or CSV writter.
+- The Output rules use the extracted variables and pass them through chains of transforms
+- The transform chains produce a key-value map
+- This key value map is then written out to stdout by the JSON or CSV writer.
 
 ## Structure of an Output Rule
 ![structure of an output rule](doc/Output%20rule.png)
@@ -33,7 +33,7 @@ For more information checkout the output of --help.
   Depending on the output type, the cast may be reflected in the final output.
 - The name (blue) is the key string in the output map.  For CSV output, the name currently isn't used.
 - The first element in an output chain (red) must be a value (i.e. a variable or string literal)
-- The rest of the chain consists of transforms (green) seperated by "|" characters.  
+- The rest of the chain consists of transforms (green) separated by "|" characters.  
   These transforms may take arguments which can be strings or variables.  Transforms are evaluated
   from left to right.
 
@@ -58,7 +58,7 @@ My goals in writing this project were:
 2. Due to the use of the GoF Decorator pattern, adding new 
    Transforms is as simple as creating a small sub-class and adding
    1 line to main.php to register it.  For a good example, look at any
-   of the files under src/Transfrom/Decorator.  Adding new cast types
+   of the files under src/Transform/Decorator.  Adding new cast types
    is similarly simple.
 3. This is a CLI application, which is pretty well documented,
    so the API is intuitive.  Also, since it is designed to return
@@ -85,7 +85,7 @@ My goals in writing this project were:
    reference columns by index.
 
 ## Running the thing
-All commands should be run from the root directory of the project.  When you first download/clone the project, you will have to run composer install to pull in the dependancies (just the unit testing framework) and build the classmap/autoloader.
+All commands should be run from the root directory of the project.  When you first download/clone the project, you will have to run composer install to pull in the dependencies (just the unit testing framework) and build the classmap/autoloader.
 
 ### Run composer install
 ```shell
